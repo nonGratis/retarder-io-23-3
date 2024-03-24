@@ -34,8 +34,12 @@ module.exports = {
     },
 
     {
-      title: 'Розроблення вимог до системи',
+      title: 'Розроблення загальних вимог до системи',
         path:"/requirements/",
+        children:[
+          '/requirements/state-of-the-art',
+            ]
+      
     },
 
     {
