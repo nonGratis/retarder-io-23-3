@@ -38,7 +38,8 @@ module.exports = {
         path:"/requirements/",
         children:[
           '/requirements/state-of-the-art',
-            ]
+          '/requirements/stakeholders-needs',
+        ]
       
     },
 
