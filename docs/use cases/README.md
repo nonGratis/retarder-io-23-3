@@ -59,7 +59,7 @@ Admin -r-> Admin.ProfileDelete
 
 ### Адміністратор
 
-@cyberbebebe твоє додаткове
+
 
 ## Сценарії використання
 
