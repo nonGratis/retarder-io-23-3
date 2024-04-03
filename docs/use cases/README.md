@@ -2,7 +2,50 @@
 
 ## Загальна схема
 
-робота тимліда
+```plantuml
+@startuml
+
+actor "Відвідувач" as Guest
+actor "Авторизований користувач" as User
+actor "Адміністратор" as Admin
+
+usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
+usecase "<b>Visitor.Login</b>\nУвійти в систему" as Visitor.Login
+
+usecase "<b>User.Help</b>\nЗвернення до підтримки" as User.Help
+usecase "<b>User.DeleteRequest</b>\nЗапит на видалення" as User.DeleteRequest
+usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
+usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
+usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
+usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
+
+usecase "<b>Administrator.Request_History</b>\nІсторія запитів користувачів" as Administrator.Request_History
+usecase "<b>Administrator.Add_New_Source</b>\nДодавання нового джерела" as Administrator.Add_New_Source
+usecase "<b>Administrator.Delete_Source</b>\nВидалення джерела" as Administrator.Delete_Source
+usecase "<b>Admin.ProfileEdit</b>\nРедагування облікового запис користувача адміністратором" as Admin.ProfileEdit
+usecase "<b>Admin.ProfileDelete</b>\nВидалення облікового запису користувача адміністратором" as Admin.ProfileDelete
+
+
+Admin -u-|> User
+User -u-|> Guest
+
+Guest -r-> Visitor.SingUp
+Guest -r-> Visitor.Login
+
+User -r-> User.Help
+User -r-> User.Search_req
+User -r-> User.Data_filter
+User -r-> User.Loading_Data_In_System
+User -r-> User.Loading_Data_From_System
+
+Admin -r-> Administrator.Request_History
+Admin -r-> Administrator.Add_New_Source
+Admin -r-> Administrator.Delete_Source
+Admin -r-> Admin.ProfileEdit
+Admin -r-> Admin.ProfileDelete
+
+@enduml
+```
 
 ## Схема використання
 
