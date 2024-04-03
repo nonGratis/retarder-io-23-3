@@ -59,7 +59,27 @@ Admin -r-> Admin.ProfileDelete
 
 ### Адміністратор
 
+@startuml
 
+actor "Адміністратор" as Admin
+
+usecase "<b>acc_manage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
+usecase "<b>source_manage</b>\nКерування джерелами інформації" as ManageSource 
+
+usecase "<b>delete_account</b>\nВидалення облікового запису\n користувача" as DeleteAccount
+usecase "<b>add_source</b>\nДодавання нового джерела" as AddSource
+usecase "<b>add_rights</b>\nНадання додаткових прав\n користувачу" as GrantPermissions
+usecase "<b>delete_source</b>\nВидалення джерела" as DeleteSource
+
+Admin --> ManageAccount
+DeleteAccount .u.> ManageAccount: <<extends>>
+GrantPermissions .u.> ManageAccount: <<extends>>
+
+Admin --> ManageSource
+AddSource .u.> ManageSource: <<extends>>
+DeleteSource .u.> ManageSource: <<extends>>
+
+@enduml
 
 ## Сценарії використання
 
