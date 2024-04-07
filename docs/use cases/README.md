@@ -61,11 +61,13 @@ actor "Користувач" as User
 
 usecase "<b>Visitor.SingUp\nРеєстрація" as Registration
 usecase "<b>Visitor.Login\nАвторизація" as Login
+usecase "<b>User.Search_req\nПошук даних" as Search
 usecase "<b>User.Data_filter\nПошук даних за фільтрами" as SearchWithFilters
 usecase "Відновлення паролю" as PasswordRecovery
 
 User --> Registration
 User --> Login
+User --> Search 
 User --> SearchWithFilters
 Login <-[dashed]- PasswordRecovery : <<extend>>
 
