@@ -38,7 +38,19 @@ Admin -r-> ManageSource
 
 ### Відвідувач
 
-@forkreros твоє додаткове
+```plantuml
+@startuml
+actor Guest
+usecase "<b>Visitor.Registration\nРегістрація" as Registration
+usecase "<b>Visitor.Login\nАвторизація" as Login
+usecase "Відновлення паролю" as PasswordRecovery
+
+Guest -> Registration
+Guest -> Login
+Login <-[dashed]- PasswordRecovery : <<extend>>
+
+@enduml
+```
 
 ### Користувач
 

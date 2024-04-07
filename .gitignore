@@ -106,3 +106,6 @@ dist
 # VSCode files
 .vscode/
 .markdownlint.json
+docs/requirements/stakeholders-needs.md
+docs/.vuepress/config.js
+docs/requirements/stakeholders-needs.md
