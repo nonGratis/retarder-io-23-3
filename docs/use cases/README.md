@@ -11,41 +11,25 @@ actor "Адміністратор" as Admin
 
 usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
 
-usecase "<b>User.Login</b>\nАвторизація" as User.Login
 usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
-usecase "<b>User.Password_Recovery</b>\nВідновлення паролю\nкористувачем" as User.Password_Recovery
-usecase "<b>User.DeleteRequest</b>\nЗапит на видалення\nоблікового запису" as User.DeleteRequest
-usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
-usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
-usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
-usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
+usecase "<b>User_profile_manage</b>" as User_profile_manage
+usecase "<b>User_search_manage</b>" as User_search_manage
+usecase "<b>User_data_manage</b>" as User_data_manage
 
-usecase "<b>Administrator.Request_History</b>\nІсторія запитів користувачів" as Administrator.Request_History
-usecase "<b>Administrator.Add_New_Source</b>\nДодавання нового джерела" as Administrator.Add_New_Source
-usecase "<b>Administrator.Delete_Source</b>\nВидалення джерела" as Administrator.Delete_Source
-usecase "<b>Admin.ProfileEdit</b>\nРедагування\nоблікового запису" as Admin.ProfileEdit
-usecase "<b>Admin.ProfileDelete</b>\nВидалення\nоблікового запису" as Admin.ProfileDelete
-
-Admin -u-|> User
+usecase "<b>User_acc_manage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
+usecase "<b>User_source_manage</b>\nКерування джерелами інформації" as ManageSource
 
 Visitor -d-> Visitor.SingUp
-
 Visitor.SingUp -d-> User
+Admin -u-|> User
 
-User -u-> User.Login
 User -u-> User.Help
-User -u-> User.Password_Recovery
-User -u-> User.DeleteRequest
-User -l-> User.Search_req
-User -r-> User.Data_filter
-User -d-> User.Loading_Data_In_System
-User --> User.Loading_Data_From_System
+User -u-> User_profile_manage
+User -l-> User_search_manage
+User -r-> User_data_manage
 
-Admin --> Administrator.Request_History
-Admin ---> Administrator.Add_New_Source
-Admin ---> Administrator.Delete_Source
-Admin ---> Admin.ProfileEdit
-Admin -d-> Admin.ProfileDelete
+Admin -l-> ManageAccount
+Admin -r-> ManageSource
 
 @enduml
 ```
