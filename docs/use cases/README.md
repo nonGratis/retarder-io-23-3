@@ -5,13 +5,13 @@
 ```plantuml
 @startuml
 
-actor "Відвідувач" as Guest
+actor "Відвідувач" as Visitor
 actor "Авторизований користувач" as User
 actor "Адміністратор" as Admin
 
 usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
-usecase "<b>Visitor.Login</b>\nУвійти в систему" as Visitor.Login
 
+usecase "<b>User.Login</b>\nУвійти в систему" as User.Login
 usecase "<b>User.Help</b>\nЗвернення до підтримки" as User.Help
 usecase "<b>User.DeleteRequest</b>\nЗапит на видалення облікового запису" as User.DeleteRequest
 usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
@@ -27,10 +27,12 @@ usecase "<b>Admin.ProfileDelete</b>\nВидалення облікового з�
 
 
 Admin -u-|> User
-User -u-|> Guest
 
-Guest -r-> Visitor.SingUp
-Guest -r-> Visitor.Login
+Visitor -d-> Visitor.SingUp
+
+Visitor.SingUp -d-> User
+
+User -u-> User.Login
 
 User -r-> User.Help
 User -r-> User.Search_req
@@ -146,7 +148,7 @@ DeleteSource .u.> ManageSource: <<extends>>
 @enduml
 ```
 
-| ***ID***:         | Visitor.Login                                                                     |
+| ***ID***:         | User.Login                                                                     |
 |-------------------|-----------------------------------------------------------------------------------|
 | ***НАЗВА***:      | Авторизація                                                                       |
 | ***УЧАСНИКИ***:   | Відвідувач, Система                                                               |
