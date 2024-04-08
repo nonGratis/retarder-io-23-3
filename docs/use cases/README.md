@@ -65,13 +65,13 @@ User --> User_profile_manage
 User --> User_search_manage
 User --> User_data_manage
 
-User_profile_manage --> User.Login 
+User_profile_manage <-[dashed]- User.Login : <<extend>>
 User.Login <-[dashed]- User.Password_Recovery : <<extend>>
-User_profile_manage --> User.DeleteRequest
-User_search_manage --> User.Search_req
+User_profile_manage <-[dashed]- User.DeleteRequest : <<extend>>
+User_search_manage <-[dashed]- User.Search_req : <<extend>>
 User.Search_req <-[dashed]- User.Data_filter : <<extend>>
-User_data_manage --> User.Loading_Data_In_System
-User_data_manage --> User.Loading_Data_From_System
+User_data_manage <-[dashed]- User.Loading_Data_In_System : <<extend>>
+User_data_manage <-[dashed]- User.Loading_Data_From_System : <<extend>>
 
 @enduml
 ```
