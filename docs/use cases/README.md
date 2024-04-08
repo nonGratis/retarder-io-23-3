@@ -13,6 +13,7 @@ usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
 
 usecase "<b>User.Login</b>\nУвійти в систему" as User.Login
 usecase "<b>User.Help</b>\nЗвернення до підтримки" as User.Help
+usecase "<b>User.Password_Recovery</b>\nВідновлення паролю користувачем" as User.Password_Recovery
 usecase "<b>User.DeleteRequest</b>\nЗапит на видалення облікового запису" as User.DeleteRequest
 usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
 usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
@@ -35,6 +36,7 @@ Visitor.SingUp -d-> User
 User -u-> User.Login
 
 User -r-> User.Help
+User -u-> User.Password_Recovery
 User -r-> User.Search_req
 User -r-> User.Data_filter
 User -r-> User.Loading_Data_In_System
