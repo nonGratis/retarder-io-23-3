@@ -63,17 +63,31 @@ Admin -d-> Admin.ProfileDelete
 
 actor "Користувач" as User
 
-usecase "<b>Visitor.SingUp\nРеєстрація" as Registration
-usecase "<b>User.Login\nАвторизація" as Login
-usecase "<b>User.Search_req\nПошук даних" as Search
-usecase "<b>User.Data_filter\nПошук даних за фільтрами" as SearchWithFilters
-usecase "Відновлення паролю" as PasswordRecovery
+usecase "<b>User_profile_manage</b>" as User_profile_manage
+usecase "<b>User_search_manage</b>" as User_search_manage
+usecase "<b>User_data_manage</b>" as User_data_manage
 
-User --> Registration
-User --> Login
-User --> Search 
-Search --> SearchWithFilters
-Login <-[dashed]- PasswordRecovery : <<extend>>
+usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
+usecase "<b>User.Login</b>\nАвторизація" as User.Login
+usecase "<b>User.Password_Recovery</b>\nВідновлення паролю\nкористувачем" as User.Password_Recovery
+usecase "<b>User.DeleteRequest</b>\nЗапит на видалення\nоблікового запису" as User.DeleteRequest
+usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
+usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
+usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
+usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
+
+User --> User.Help
+User --> User_profile_manage
+User --> User_search_manage
+User --> User_data_manage
+
+User_profile_manage --> User.Login 
+User.Login <-[dashed]- User.Password_Recovery : <<extend>>
+User_profile_manage --> User.DeleteRequest
+User_search_manage --> User.Search_req
+User.Search_req <-[dashed]- User.Data_filter : <<extend>>
+User_data_manage --> User.Loading_Data_In_System
+User_data_manage --> User.Loading_Data_From_System
 
 @enduml
 ```
