@@ -11,10 +11,10 @@ actor "Адміністратор" as Admin
 
 usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
 
-usecase "<b>User.Login</b>\nУвійти в систему" as User.Login
-usecase "<b>User.Help</b>\nЗвернення до підтримки" as User.Help
-usecase "<b>User.Password_Recovery</b>\nВідновлення паролю користувачем" as User.Password_Recovery
-usecase "<b>User.DeleteRequest</b>\nЗапит на видалення облікового запису" as User.DeleteRequest
+usecase "<b>User.Login</b>\nАвторизація" as User.Login
+usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
+usecase "<b>User.Password_Recovery</b>\nВідновлення паролю\nкористувачем" as User.Password_Recovery
+usecase "<b>User.DeleteRequest</b>\nЗапит на видалення\nоблікового запису" as User.DeleteRequest
 usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
 usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
 usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
@@ -23,9 +23,8 @@ usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження дани
 usecase "<b>Administrator.Request_History</b>\nІсторія запитів користувачів" as Administrator.Request_History
 usecase "<b>Administrator.Add_New_Source</b>\nДодавання нового джерела" as Administrator.Add_New_Source
 usecase "<b>Administrator.Delete_Source</b>\nВидалення джерела" as Administrator.Delete_Source
-usecase "<b>Admin.ProfileEdit</b>\nРедагування облікового запису" as Admin.ProfileEdit
-usecase "<b>Admin.ProfileDelete</b>\nВидалення облікового запису" as Admin.ProfileDelete
-
+usecase "<b>Admin.ProfileEdit</b>\nРедагування\nоблікового запису" as Admin.ProfileEdit
+usecase "<b>Admin.ProfileDelete</b>\nВидалення\nоблікового запису" as Admin.ProfileDelete
 
 Admin -u-|> User
 
@@ -34,19 +33,19 @@ Visitor -d-> Visitor.SingUp
 Visitor.SingUp -d-> User
 
 User -u-> User.Login
-
-User -r-> User.Help
+User -u-> User.Help
 User -u-> User.Password_Recovery
-User -r-> User.Search_req
+User -u-> User.DeleteRequest
+User -l-> User.Search_req
 User -r-> User.Data_filter
-User -r-> User.Loading_Data_In_System
-User -r-> User.Loading_Data_From_System
+User -d-> User.Loading_Data_In_System
+User --> User.Loading_Data_From_System
 
-Admin -r-> Administrator.Request_History
-Admin -r-> Administrator.Add_New_Source
-Admin -r-> Administrator.Delete_Source
-Admin -r-> Admin.ProfileEdit
-Admin -r-> Admin.ProfileDelete
+Admin --> Administrator.Request_History
+Admin ---> Administrator.Add_New_Source
+Admin ---> Administrator.Delete_Source
+Admin ---> Admin.ProfileEdit
+Admin -d-> Admin.ProfileDelete
 
 @enduml
 ```
@@ -65,7 +64,7 @@ Admin -r-> Admin.ProfileDelete
 actor "Користувач" as User
 
 usecase "<b>Visitor.SingUp\nРеєстрація" as Registration
-usecase "<b>Visitor.Login\nАвторизація" as Login
+usecase "<b>User.Login\nАвторизація" as Login
 usecase "<b>User.Search_req\nПошук даних" as Search
 usecase "<b>User.Data_filter\nПошук даних за фільтрами" as SearchWithFilters
 usecase "Відновлення паролю" as PasswordRecovery
