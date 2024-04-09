@@ -221,7 +221,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Надсилає заповнену форму системі;
 |Система|
     :Аналізує проблему користувача за ключовими словами;
-        note right #ffaaaa
+        note right #FF736E
             problem_not_defined
             problem_no_solution
         end note
@@ -382,7 +382,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     start
     :Переходить до розділу "Завантаження даних";
     :Натискає кнопку "Завантажити дані в систему";
-        note left #ffaaaa
+        note left #FF736E
             wrong_access_rights
         end note
 |Система|
@@ -392,7 +392,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Вибирає параметри та натискає кнопку "Завантажити";
 |Система| 
     :Завантажує дані\nвідповідно до вказаних параметрів;
-        note right #ffaaaa
+        note right #FF736E
             wrong_data_format
         wrong_connection
 end note
@@ -417,7 +417,7 @@ end note
     start
     :Переходить до розділу "Завантаження даних";
     :Натискає кнопку "Завантажити дані з системи";
-        note left #ffaaaa
+        note left #FF736E
             wrong_access_rights
         end note
 |Система|
@@ -427,26 +427,26 @@ end note
     :Вибирає параметри та натискає кнопку "Завантажити";
 |Система| 
     :Виконує пошук даних в базі даних\nзгідно з вказаними параметрами.;
-        note right #ffaaaa
+        note right #FF736E
             no_data
         end note
     :Генерує підтвердження, про успішно знайдені дані;
     :Перевіряє наявність електронної адреси користувача;
-        note right #ffaaaa
+        note right #FF736E
             no_email
         end note
     :Виконує підготовку до завантаження даних;
-        note right #ffaaaa
+        note right #FF736E
             wrong_connection
         end note
     :Надсилає дані на пошту користувача;
-        note right #ffaaaa
+        note right #FF736E
             wrong_email
         end note
 |Користувач| 
     :Отримує сповіщення про успішне\nнадсилання даних на пошту;
     :Завантажує отримані дані з пошти;
-        note left #ffaaaa
+        note left #FF736E
             wrong_connection
         end note
     stop
@@ -470,12 +470,12 @@ end note
     :Переходить до розділу "Історія запитів користувача";
     :Натискає кнопку "Обрати користувача";
     :Натискає кнопку "Переглянути історію запитів";
-        note left #ffaaaa
+        note left #FF736E
             wrong_access_rights
         end note
 |Система|
     :Шукає та формує історію запитів;
-        note right #ffaaaa
+        note right #FF736E
             wrong_search
         end note
     :Відображає її у вигляді списку або таблиці;
