@@ -41,13 +41,12 @@ Admin -r-> ManageSource
 ```plantuml
 @startuml
 actor Guest
+actor User
+
 usecase "<b>Visitor.Registration\nРеєстрація" as Registration
-usecase "<b>Visitor.Login\nАвторизація" as Login
-usecase "Відновлення паролю" as PasswordRecovery
 
 Guest -> Registration
-Guest -> Login
-Login <-[dashed]- PasswordRecovery : <<extend>>
+Registration -> User
 
 @enduml
 ```
