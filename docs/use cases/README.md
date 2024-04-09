@@ -2,7 +2,6 @@
 
 ## Загальна схема
 
-```plantuml
 @startuml
 
 actor "Відвідувач" as Visitor
@@ -32,13 +31,11 @@ Admin -l-> ManageAccount
 Admin -r-> ManageSource
 
 @enduml
-```
 
 ## Схема використання
 
 ### Відвідувач
 
-```plantuml
 @startuml
 actor Guest
 actor User
@@ -49,11 +46,9 @@ Guest -> Registration
 Registration -> User
 
 @enduml
-```
 
 ### Користувач
 
-```plantuml
 @startuml
 
 actor "Користувач" as User
@@ -85,11 +80,9 @@ User_data_manage <-[dashed]- User.Loading_Data_In_System : <<extend>>
 User_data_manage <-[dashed]- User.Loading_Data_From_System : <<extend>>
 
 @enduml
-```
 
 ### Адміністратор
 
-```plantuml
 @startuml
 
 actor "Адміністратор" as Admin
@@ -113,7 +106,6 @@ Administrator.Add_New_Source .u.> ManageSource: <<extends>>
 Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 @enduml
-```
 
 ## Сценарії використання
 
@@ -130,7 +122,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | EX.Visitor.SingUp.Login Зайнятий логін <br /> EX.Visitor.SingUp.WrongEmail Невірна електронна пошта <br /> EX.Visitor.SingUp.SimplePass Пароль малої складності <br />EX.Visitor.SingUp.NotConfirm Користувач не підтвердив реєстрацію |
 | ***ОСНОВНИЙ СЦЕНАРІЙ***: | 1. Користувач починає взаємодію; <br /> 2. Користувач натискає кнопку реєстрації нового облікового запису; <br /> 3. Система надає форму для заповнення <br /> 4. Користувач заповнює поля: логін, адреса електронної пошти, пароль <br /> 5. Користувач натискає кнопку підтвердження реєстрації <br />6. Система створює новий обліковий запис <br /> 7. Користувач закінчує взаємодію |
 
-```plantuml
 @startuml
 |Відвідувач|
     start
@@ -160,7 +151,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Закінчує взаємодію;
     stop;
 @enduml
-```
 
 ### Користувач
 
@@ -175,7 +165,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Невірний логін EX.User.Login.WrongLogin<br /> Невірний пароль EX.User.Login.WrongPass<br /> Блокування облікового запису EX.User.Login.AccBlocked<br />Обліковий запис не існує Ex.User.Login.AccDoesntExist<br /> Невірна електронна пошта EX.User.Login.WrongEmail |
 | ***ОСНОВНИЙ СЦЕНАРІЙ***: | 1. Користувач починає взаємодію <br /> 2. Користувач натискає кнопку входу до облікового запису <br /> 3. Система надає форму для заповнення <br /> 4. Користувач заповнює поля: адреса електронної пошти або логін, пароль <br /> 5. Система підтверджує виконання <br /> 6. Користувач закінчує взаємодію                                                        |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -202,7 +191,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 |Користувач|
     :Закінчує взаємодію;
     stop;
-```
+@enduml
 
 #### Звернення до підтримки
 
@@ -214,7 +203,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Користувач отримує інформацію про роботу з системою                                     |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Система не змогла ідентифікувати запит - problem_not_defined; <br />Система не знає вирішення цієї проблеми користувача - problem_no_solution. |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -237,7 +225,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Отримує довідку та закінчує взаємодію;
     stop;
 @enduml
-```
 
 #### Відновлення паролю
 
@@ -249,7 +236,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Оновлений пароль облікового запису користувача                                                       |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Облікового запису не існує InvalidEmailForRecovery <br /> Помилка переходу на сторінку відновлення InvalidRecoveryLink <br /> Некоректний пароль InvalidPassForRecovery |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -281,7 +267,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Завершує взаємодію;
     stop
 @enduml
-```
 
 #### Запит на видалення облікового запису
 
@@ -293,7 +278,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Успішне видалення облікового запису користувача                              |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Видалення не підтверджене користувачем DeleteRequest.NotConfirmed <br /> Введений пароль є неправильним DeleteRequest.WrongPass |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -319,7 +303,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 |Користувач|
     :Закінчує взаємодію;
     stop;
-```
+@enduml
 
 #### Пошук
 
@@ -331,7 +315,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Відображення результатів пошуку користувачеві.                                                                |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Невдала спроба пошуку через помилково введені дані - EX.User.Search_req.InvalidInput. <br /> Користувач не був авторизований - EX.User.SingUp.False.                   |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -349,7 +332,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Взаємодіє з результатами;
     stop;
 @enduml
-```
 
 #### Фільтрація
 
@@ -361,7 +343,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Відображення оновлених результатів пошуку з урахуванням обраних фільтрів.            |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Користувач не обрав жодного фільтру - EX.User.Data_filter.NoFilters.                 |
 
-```plantuml
 @startuml
 |Користувач|
     start
@@ -381,7 +362,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Переглядає оновлені результати з\nврахуванням застосованих фільтрів;
     stop;
 @enduml
-```
 
 #### Імпорт даних
 
@@ -393,7 +373,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:  | Дані успішно завантажені у систему                        |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Помилки під час завантаження - wrong_data_format <br /> Втрата з'єднання - wrong_connection <br /> Обмеження прав доступу - wrong_access_rights |
 
-```plantuml
 @startuml
 |Користувач| 
     start
@@ -418,7 +397,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Отримує сповіщення про успішне\nзавантаження даних в систему;
     stop
 @enduml
-```
 
 #### Експорт даних
 
@@ -430,7 +408,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Успішне завантаження даних                                                               |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Відсутність даних у системі - no_data; <br /> Помилки під час завантаження - wrong_connection; <br /> Відсутність електронної пошти - no_email; <br /> Неправильно введено електронну пошту - wrong_email; <br /> Обмеження прав доступу - wrong_access_rights. |
 
-```plantuml
 @startuml
 |Користувач| 
     start
@@ -470,7 +447,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
         end note
     stop
 @enduml
-```
 
 ### Адміністратор
 
@@ -484,7 +460,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:         | Збереження та доступ до історії запитів для адміністратора                                 |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Втрата даних - wrong_search; <br /> Обмежений доступ до історії - wrong_access_rights.  |
 
-```plantuml
 @startuml
 |Адміністратор| 
     start
@@ -502,7 +477,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Відображає її у вигляді списку або таблиці;
     stop
 @enduml
-```
 
 #### Додавання джерела
 
@@ -536,7 +510,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:  | Змінені дані облікового запису користувача                                                 |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Адміністратор не має доступу до редагування облікового запису ProfileEdit.AccessDenied<br />Обраного користувача не існує ProfileEdit.WrongLogin<br />Адміністратор не підтверджує редагування облікового запису Admin.ProfileEdit.NotConfirm |
 
-```plantuml
 @startuml
 |Адміністратор|
     start
@@ -568,7 +541,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 |Адміністратор|
     stop;
 @enduml
-```
 
 #### Видалення облікового запису
 
@@ -580,7 +552,6 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 | ***РЕЗУЛЬТАТ***:  | Обліковий запис видалений адміністратором                                         |
 | ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Адміністратор не має доступу до видалення облікового запису ProfileDelete.AccessDenied<br />Обраного користувача не існує ProfileDelete.WrongLogin<br />Адміністратор не підтверджує видалення облікового запису Admin.ProfileDelete.NotConfirm |
 
-```plantuml
 @startuml
 |Адміністратор|
     start
@@ -609,4 +580,3 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Повідомляє адміністратору про\nуспішне видалення профілю;
     stop;
 @enduml
-```
