@@ -31,6 +31,14 @@ entity Role #fdd8bf
   User ...> Role
   Admin ...> Role
 
+entity Right #fdd8bf
+  entity Right.id
+  entity Right.permission
+
+  Right.id --* Right
+  Right.permission --* Right
+
+Right "1,*"--"0,*" Role
 Role "1,1"--"0,*" Client
 @enduml
 ```
