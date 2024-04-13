@@ -5,6 +5,18 @@
 ```plantuml
 @startuml
 
+entity Client #fdd8bf
+  entity Client.id
+  entity Client.login
+  entity Client.email
+  entity Client.password
+
+  Client.id -r-* Client
+  Client.login -u-* Client
+  Client.email -u-* Client
+  Client.password -u-* Client
+
+
 @enduml
 ```
 
