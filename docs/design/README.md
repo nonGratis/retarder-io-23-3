@@ -81,6 +81,9 @@ Access "1,1"--"0,*" MediaData
 
 ## ER-модель
 
+```plantuml
+```
+
 ## Реляційна схема
 
 <center style="margin-top: 16px">
