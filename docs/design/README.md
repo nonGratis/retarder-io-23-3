@@ -27,9 +27,9 @@ entity Role #fdd8bf
   entity User
   entity Admin
 
-  Guest ...> Role
-  User ...> Role
-  Admin ...> Role
+  Guest ...> Role : instanceOf
+  User ...> Role : instanceOf
+  Admin ...> Role : instanceOf
 
 entity Right #fdd8bf
   entity Right.id
