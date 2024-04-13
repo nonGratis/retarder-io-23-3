@@ -38,8 +38,24 @@ entity Right #fdd8bf
   Right.id --* Right
   Right.permission --* Right
 
+entity Request #fdd8bf
+  entity Request.id
+  entity Request.name
+  entity Request.description
+  entity Request.date
+ 
+  Request.id --* Request
+  Request.name --* Request
+  Request.description --* Request
+  Request.date --* Request
+
+entity Access #fdd8bf
+
+
 Right "1,*"--"0,*" Role
 Role "1,1"--"0,*" Client
+Client "1,1"-r-"0,*" Request
+Request "0,*"---"1,1" Access
 @enduml
 ```
 
