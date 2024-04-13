@@ -51,11 +51,31 @@ entity Request #fdd8bf
 
 entity Access #fdd8bf
 
+entity Action #fdd8bf
+  entity Action.id
+  entity Action.name
+
+  Action.id -u-* Action
+  Action.name -u-* Action
+
+entity MediaData #fdd8bf
+  entity MediaData.id
+  entity MediaData.name
+  entity MediaData.fileType
+  entity MediaData.metadata
+
+  MediaData.id -u-* MediaData
+  MediaData.name -u-* MediaData
+  MediaData.fileType -u-* MediaData
+  MediaData.metadata -u-* MediaData
 
 Right "1,*"--"0,*" Role
 Role "1,1"--"0,*" Client
 Client "1,1"-r-"0,*" Request
 Request "0,*"---"1,1" Access
+Access "1,1"--"0,*" Action
+Access "1,1"--"0,*" MediaData
+
 @enduml
 ```
 
