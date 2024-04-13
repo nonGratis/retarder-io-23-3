@@ -10,11 +10,13 @@ entity Client #fdd8bf
   entity Client.login
   entity Client.email
   entity Client.password
+  entity Client.role
 
   Client.id -r-* Client
   Client.login -u-* Client
   Client.email -u-* Client
   Client.password -u-* Client
+  Client.role -u-* Client
 
 entity Role #fdd8bf
   entity Role.name
@@ -69,9 +71,9 @@ entity MediaData #fdd8bf
   MediaData.fileType -u-* MediaData
   MediaData.metadata -u-* MediaData
 
-Right "1,*"--"0,*" Role
-Role "1,1"--"0,*" Client
 Client "1,1"-r-"0,*" Request
+Right "1,*"--"0,*" Role
+Role "1,1"--"0,*" Access
 Request "0,*"---"1,1" Access
 Access "1,1"--"0,*" Action
 Access "1,1"--"0,*" MediaData
