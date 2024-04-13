@@ -16,7 +16,22 @@ entity Client #fdd8bf
   Client.email -u-* Client
   Client.password -u-* Client
 
+entity Role #fdd8bf
+  entity Role.name
+  entity Role.description
 
+  Role.name --* Role
+  Role.description --* Role
+
+  entity Guest
+  entity User
+  entity Admin
+
+  Guest ...> Role
+  User ...> Role
+  Admin ...> Role
+
+Role "1,1"--"0,*" Client
 @enduml
 ```
 
