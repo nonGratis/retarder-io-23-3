@@ -10,18 +10,20 @@ entity Client #fdd8bf
   entity Client.login
   entity Client.email
   entity Client.password
-  entity Client.role
+  entity Client.roleId
 
   Client.id -r-* Client
   Client.login -u-* Client
   Client.email -u-* Client
   Client.password -u-* Client
-  Client.role -u-* Client
+  Client.roleId -u-* Client
 
 entity Role #fdd8bf
+  entity Role.id
   entity Role.name
   entity Role.description
 
+  Role.id --* Role
   Role.name --* Role
   Role.description --* Role
 
