@@ -63,9 +63,13 @@ entity Access #fdd8bf
 entity Action #fdd8bf
   entity Action.id
   entity Action.name
+  entity Action.description
+  entity Action.date
 
   Action.id -u-* Action
   Action.name -u-* Action
+  Action.description -u-* Action
+  Action.date -u-* Action
 
 entity MediaData #fdd8bf
   entity MediaData.id
