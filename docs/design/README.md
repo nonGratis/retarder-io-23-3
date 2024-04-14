@@ -46,12 +46,12 @@ entity Request #fdd8bf
   entity Request.id
   entity Request.name
   entity Request.description
-  entity Request.date
+  entity Request.datetime
  
   Request.id --* Request
   Request.name --* Request
   Request.description --* Request
-  Request.date --* Request
+  Request.datetime --* Request
 
 entity Access #fdd8bf
   entity Access.id
@@ -64,12 +64,12 @@ entity Action #fdd8bf
   entity Action.id
   entity Action.name
   entity Action.description
-  entity Action.date
+  entity Action.datetime
 
   Action.id -u-* Action
   Action.name -u-* Action
   Action.description -u-* Action
-  Action.date -u-* Action
+  Action.datetime -u-* Action
 
 entity MediaData #fdd8bf
   entity MediaData.id
@@ -130,7 +130,7 @@ Access "1,1"--"0,*" MediaData
         id: UUID
         name: TEXT
         description: TEXT
-        date: DATE
+        datetime: DATETIME
       }
 
       entity Access <<ENTITY>> {
@@ -144,7 +144,7 @@ Access "1,1"--"0,*" MediaData
         id: UUID
         name: TEXT
         description: TEXT
-        date: DATE
+        datetime: DATETIME
       }
       
       object SupportManage #white
