@@ -22,10 +22,12 @@ entity Role #fdd8bf
   entity Role.id
   entity Role.name
   entity Role.description
+  entity Role.permission
 
   Role.id --* Role
   Role.name --* Role
   Role.description --* Role
+  Role.permission --* Role
 
   entity Guest
   entity User
@@ -34,13 +36,6 @@ entity Role #fdd8bf
   Guest ...> Role : instanceOf
   User ...> Role : instanceOf
   Admin ...> Role : instanceOf
-
-entity Right #fdd8bf
-  entity Right.id
-  entity Right.permission
-
-  Right.id --* Right
-  Right.permission --* Right
 
 entity Request #fdd8bf
   entity Request.id
@@ -83,7 +78,6 @@ entity MediaData #fdd8bf
   MediaData.metadata -u-* MediaData
 
 Client "1,1"-r-"0,*" Request
-Right "1,*"--*"0,*" Role
 Role "1,1"--"0,*" Access
 Request "0,*"---"1,1" Access
 Access "1,1"--"0,*" Action
@@ -111,6 +105,7 @@ Access "1,1"--"0,*" MediaData
         id: UUID
         name: TEXT
         description: TEXT
+        permission: TEXT
       }
 
       object Guest #white
@@ -120,11 +115,6 @@ Access "1,1"--"0,*" MediaData
       Guest ..> Role : instanceOf
       User ..> Role : instanceOf
       Admin ..> Role : instanceOf
-
-      entity Right <<ENTITY>> {
-        id: UUID
-        permission: TEXT
-      }
 
       entity Request <<ENTITY>> {
         id: UUID
@@ -172,7 +162,6 @@ Access "1,1"--"0,*" MediaData
 
 
   Client "1,1"--"0,*" Request
-  Right "1,*"--"0,*" Role
   Role "1,1"---"0,*" Access
   Request "0,*"---"1,1" Access
   Access "1,1"---"0,*" Action
