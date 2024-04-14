@@ -107,6 +107,35 @@ Access "1,1"--"0,*" MediaData
   }
 
   package AccessControl {
+      entity Role <<ENTITY>> {
+        id: UUID
+        name: TEXT
+        description: TEXT
+      }
+
+      object Guest #white
+      object User #white
+      object Admin #white
+
+      Guest ..> Role : instanceOf
+      User ..> Role : instanceOf
+      Admin ..> Role : instanceOf
+
+      entity Right <<ENTITY>> {
+        id: UUID
+        permission: TEXT
+      }
+
+      entity Request <<ENTITY>> {
+        id: UUID
+        name: TEXT
+        description: TEXT
+        date: DATE
+      }
+
+      entity Access <<ENTITY>> {
+        id: UUID
+        permission: TEXT
       }
   }
 
