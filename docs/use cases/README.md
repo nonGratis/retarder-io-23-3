@@ -11,21 +11,21 @@ actor "Адміністратор" as Admin
 usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
 
 usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
-usecase "<b>User_profile_manage</b>" as User_profile_manage
-usecase "<b>User_search_manage</b>" as User_search_manage
-usecase "<b>User_data_manage</b>" as User_data_manage
+usecase "<b>ProfileManage</b>" as ProfileManage
+usecase "<b>SearchManage</b>" as SearchManage
+usecase "<b>DataManage</b>" as DataManage
 
-usecase "<b>User_acc_manage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
-usecase "<b>User_source_manage</b>\nКерування джерелами інформації" as ManageSource
+usecase "<b>AccountManage</b>\nКерування обліковими\n записами користувачів" as ManageAccount
+usecase "<b>SourceManage</b>\nКерування джерелами інформації" as ManageSource
 
 Visitor -d-> Visitor.SingUp
 Visitor.SingUp -d-> User
 Admin -u-|> User
 
 User -u-> User.Help
-User -u-> User_profile_manage
-User -l-> User_search_manage
-User -r-> User_data_manage
+User -u-> ProfileManage
+User -l-> SearchManage
+User -r-> DataManage
 
 Admin -l-> ManageAccount
 Admin -r-> ManageSource
@@ -53,9 +53,9 @@ Registration -> User
 
 actor "Користувач" as User
 
-usecase "<b>User_profile_manage</b>" as User_profile_manage
-usecase "<b>User_search_manage</b>" as User_search_manage
-usecase "<b>User_data_manage</b>" as User_data_manage
+usecase "<b>ProfileManage</b>" as ProfileManage
+usecase "<b>SearchManage</b>" as SearchManage
+usecase "<b>DataManage</b>" as DataManage
 
 usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
 usecase "<b>User.Login</b>\nАвторизація" as User.Login
@@ -67,17 +67,17 @@ usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних
 usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
 
 User --> User.Help
-User --> User_profile_manage
-User --> User_search_manage
-User --> User_data_manage
+User --> ProfileManage
+User --> SearchManage
+User --> DataManage
 
-User_profile_manage <-[dashed]- User.Login : <<extend>>
+ProfileManage <-[dashed]- User.Login : <<extend>>
 User.Login <-[dashed]- User.Password_Recovery : <<extend>>
-User_profile_manage <-[dashed]- User.DeleteRequest : <<extend>>
-User_search_manage <-[dashed]- User.Search_req : <<extend>>
+ProfileManage <-[dashed]- User.DeleteRequest : <<extend>>
+SearchManage <-[dashed]- User.Search_req : <<extend>>
 User.Search_req <-[dashed]- User.Data_filter : <<extend>>
-User_data_manage <-[dashed]- User.Loading_Data_In_System : <<extend>>
-User_data_manage <-[dashed]- User.Loading_Data_From_System : <<extend>>
+DataManage <-[dashed]- User.Loading_Data_In_System : <<extend>>
+DataManage <-[dashed]- User.Loading_Data_From_System : <<extend>>
 
 @enduml
 
@@ -87,8 +87,8 @@ User_data_manage <-[dashed]- User.Loading_Data_From_System : <<extend>>
 
 actor "Адміністратор" as Admin
 
-usecase "<b>User_acc_manage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
-usecase "<b>User_source_manage</b>\nКерування джерелами інформації" as ManageSource 
+usecase "<b>AccountManage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
+usecase "<b>SourceManage</b>\nКерування джерелами інформації" as ManageSource 
 
 usecase "<b>Administrator.Add_New_Source</b>\nДодавання нового джерела" as Administrator.Add_New_Source
 usecase "<b>Administrator.Delete_Source</b>\nВидалення джерела" as Administrator.Delete_Source
