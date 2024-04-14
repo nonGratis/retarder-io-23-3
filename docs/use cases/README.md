@@ -10,7 +10,7 @@ actor "Адміністратор" as Admin
 
 usecase "<b>Visitor.SingUp</b>\nРеєстрація" as Visitor.SingUp
 
-usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
+usecase "<b>SupportManage</b>" as SupportManage
 usecase "<b>ProfileManage</b>" as ProfileManage
 usecase "<b>SearchManage</b>" as SearchManage
 usecase "<b>DataManage</b>" as DataManage
@@ -22,7 +22,7 @@ Visitor -d-> Visitor.SingUp
 Visitor.SingUp -d-> User
 Admin -u-|> User
 
-User -u-> User.Help
+User -u-> SupportManage
 User -u-> ProfileManage
 User -l-> SearchManage
 User -r-> DataManage
@@ -53,6 +53,7 @@ Registration -> User
 
 actor "Користувач" as User
 
+usecase "<b>SupportManage</b>" as SupportManage
 usecase "<b>ProfileManage</b>" as ProfileManage
 usecase "<b>SearchManage</b>" as SearchManage
 usecase "<b>DataManage</b>" as DataManage
@@ -66,11 +67,12 @@ usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_
 usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
 usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
 
-User --> User.Help
+User --> SupportManage
 User --> ProfileManage
 User --> SearchManage
 User --> DataManage
 
+SupportManage <-[dashed]- User.Help : <<extend>>
 ProfileManage <-[dashed]- User.Login : <<extend>>
 User.Login <-[dashed]- User.Password_Recovery : <<extend>>
 ProfileManage <-[dashed]- User.DeleteRequest : <<extend>>
