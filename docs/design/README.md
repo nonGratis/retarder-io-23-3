@@ -140,6 +140,34 @@ Access "1,1"--"0,*" MediaData
   }
 
   package MediaManagement {
+      entity Action <<ENTITY>> {
+        id: UUID
+        name: TEXT
+        description: TEXT
+        date: DATE
+      }
+      
+      object SupportManage #white
+      object ProfileManage #white
+      object SearchManage #white
+      object DataManage #white
+      object ManageAccount #white
+      object ManageSource #white
+
+      SupportManage ..> Action : instanceOf
+      ProfileManage ...> Action : instanceOf
+      SearchManage ...> Action : instanceOf
+      DataManage ...> Action : instanceOf
+      ManageAccount .u.> Action : instanceOf
+      ManageSource .> Action : instanceOf
+
+
+      entity MediaData <<ENTITY>> {
+        id: UUID
+        name: TEXT
+        fileType: TEXT
+        metadata: TEXT
+      }
   }
 
 @enduml
