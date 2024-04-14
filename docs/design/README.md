@@ -96,6 +96,16 @@ Access "1,1"--"0,*" MediaData
 
 ```plantuml
 @startuml
+  package ClientManage {
+      }
+  }
+
+  package AccessControl {
+      }
+  }
+
+  package MediaManagement {
+  }
 
 @enduml
 ```
