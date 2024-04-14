@@ -54,6 +54,11 @@ entity Request #fdd8bf
   Request.date --* Request
 
 entity Access #fdd8bf
+  entity Access.id
+  entity Access.permission
+
+  Access.id -r-* Access
+  Access.permission -l-* Access
 
 entity Action #fdd8bf
   entity Action.id
