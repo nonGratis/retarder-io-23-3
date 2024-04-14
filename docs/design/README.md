@@ -83,7 +83,7 @@ entity MediaData #fdd8bf
   MediaData.metadata -u-* MediaData
 
 Client "1,1"-r-"0,*" Request
-Right "1,*"--"0,*" Role
+Right "1,*"--*"0,*" Role
 Role "1,1"--"0,*" Access
 Request "0,*"---"1,1" Access
 Access "1,1"--"0,*" Action
