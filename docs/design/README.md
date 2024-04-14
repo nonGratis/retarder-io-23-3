@@ -97,6 +97,12 @@ Access "1,1"--"0,*" MediaData
 ```plantuml
 @startuml
   package ClientManage {
+      entity Client <<ENTITY>> {
+        id: UUID
+        login: TEXT
+        email: TEXT
+        password: TEXT
+        roleId: INT
       }
   }
 
