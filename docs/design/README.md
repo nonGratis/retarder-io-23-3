@@ -2,93 +2,89 @@
 
 ## Модель бізнес-об'єктів
 
-```plantuml
 @startuml
+  entity Client #fdd8bf
+    entity Client.id
+    entity Client.login
+    entity Client.email
+    entity Client.password
+    entity Client.roleId
 
-entity Client #fdd8bf
-  entity Client.id
-  entity Client.login
-  entity Client.email
-  entity Client.password
-  entity Client.roleId
+    Client.id -r-* Client
+    Client.login -u-* Client
+    Client.email -u-* Client
+    Client.password -u-* Client
+    Client.roleId -u-* Client
 
-  Client.id -r-* Client
-  Client.login -u-* Client
-  Client.email -u-* Client
-  Client.password -u-* Client
-  Client.roleId -u-* Client
+  entity Role #fdd8bf
+    entity Role.id
+    entity Role.name
+    entity Role.description
+    entity Role.permission
 
-entity Role #fdd8bf
-  entity Role.id
-  entity Role.name
-  entity Role.description
-  entity Role.permission
+    Role.id --* Role
+    Role.name --* Role
+    Role.description --* Role
+    Role.permission --* Role
 
-  Role.id --* Role
-  Role.name --* Role
-  Role.description --* Role
-  Role.permission --* Role
+    entity Guest
+    entity User
+    entity Admin
 
-  entity Guest
-  entity User
-  entity Admin
+    Guest ...> Role : instanceOf
+    User ...> Role : instanceOf
+    Admin ...> Role : instanceOf
 
-  Guest ...> Role : instanceOf
-  User ...> Role : instanceOf
-  Admin ...> Role : instanceOf
+  entity Request #fdd8bf
+    entity Request.id
+    entity Request.name
+    entity Request.description
+    entity Request.datetime
+  
+    Request.id --* Request
+    Request.name --* Request
+    Request.description --* Request
+    Request.datetime --* Request
 
-entity Request #fdd8bf
-  entity Request.id
-  entity Request.name
-  entity Request.description
-  entity Request.datetime
- 
-  Request.id --* Request
-  Request.name --* Request
-  Request.description --* Request
-  Request.datetime --* Request
+  entity Access #fdd8bf
+    entity Access.id
+    entity Access.permission
 
-entity Access #fdd8bf
-  entity Access.id
-  entity Access.permission
+    Access.id -r-* Access
+    Access.permission -l-* Access
 
-  Access.id -r-* Access
-  Access.permission -l-* Access
+  entity Action #fdd8bf
+    entity Action.id
+    entity Action.name
+    entity Action.description
+    entity Action.datetime
 
-entity Action #fdd8bf
-  entity Action.id
-  entity Action.name
-  entity Action.description
-  entity Action.datetime
+    Action.id -u-* Action
+    Action.name -u-* Action
+    Action.description -u-* Action
+    Action.datetime -u-* Action
 
-  Action.id -u-* Action
-  Action.name -u-* Action
-  Action.description -u-* Action
-  Action.datetime -u-* Action
+  entity MediaData #fdd8bf
+    entity MediaData.id
+    entity MediaData.name
+    entity MediaData.fileType
+    entity MediaData.metadata
 
-entity MediaData #fdd8bf
-  entity MediaData.id
-  entity MediaData.name
-  entity MediaData.fileType
-  entity MediaData.metadata
+    MediaData.id -u-* MediaData
+    MediaData.name -u-* MediaData
+    MediaData.fileType -u-* MediaData
+    MediaData.metadata -u-* MediaData
 
-  MediaData.id -u-* MediaData
-  MediaData.name -u-* MediaData
-  MediaData.fileType -u-* MediaData
-  MediaData.metadata -u-* MediaData
-
-Client "1,1"-r-"0,*" Request
-Role "1,1"--"0,*" Access
-Request "0,*"---"1,1" Access
-Access "1,1"--"0,*" Action
-Access "1,1"--"0,*" MediaData
+  Client "1,1"-r-"0,*" Request
+  Role "1,1"--"0,*" Access
+  Request "0,*"---"1,1" Access
+  Access "1,1"--"0,*" Action
+  Access "1,1"--"0,*" MediaData
 
 @enduml
-```
 
 ## ER-модель
 
-```plantuml
 @startuml
   package ClientManage {
       entity Client <<ENTITY>> {
@@ -136,7 +132,7 @@ Access "1,1"--"0,*" MediaData
         description: TEXT
         datetime: DATETIME
       }
-      
+
       object SupportManage #white
       object ProfileManage #white
       object SearchManage #white
@@ -168,10 +164,9 @@ Access "1,1"--"0,*" MediaData
   Access "1,1"---"0,*" MediaData
 
 @enduml
-```
 
 ## Реляційна схема
 
-<center style="margin-top: 16px">
-  <img alt="" src="./media/Relation.svg" />
-</center>
+<p align="center">
+  <img src="./media/Relation.svg" width="600">
+</p>
