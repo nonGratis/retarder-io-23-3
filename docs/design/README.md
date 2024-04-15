@@ -92,7 +92,7 @@ Access "1,1"--"0,*" MediaData
 @startuml
   package ClientManage {
       entity Client <<ENTITY>> {
-        id: UUID
+        id: INT
         login: TEXT
         email: TEXT
         password: TEXT
@@ -102,7 +102,7 @@ Access "1,1"--"0,*" MediaData
 
   package AccessControl {
       entity Role <<ENTITY>> {
-        id: UUID
+        id: INT
         name: TEXT
         description: TEXT
         permission: TEXT
@@ -117,21 +117,21 @@ Access "1,1"--"0,*" MediaData
       Admin ..> Role : instanceOf
 
       entity Request <<ENTITY>> {
-        id: UUID
+        id: INT
         name: TEXT
         description: TEXT
         datetime: DATETIME
       }
 
       entity Access <<ENTITY>> {
-        id: UUID
+        id: INT
         permission: TEXT
       }
   }
 
   package MediaManagement {
       entity Action <<ENTITY>> {
-        id: UUID
+        id: INT
         name: TEXT
         description: TEXT
         datetime: DATETIME
@@ -153,7 +153,7 @@ Access "1,1"--"0,*" MediaData
 
 
       entity MediaData <<ENTITY>> {
-        id: UUID
+        id: INT
         name: TEXT
         fileType: TEXT
         metadata: TEXT
