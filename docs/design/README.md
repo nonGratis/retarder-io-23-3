@@ -3,7 +3,7 @@
 ## Модель бізнес-об'єктів
 
 @startuml
-  entity Client #fdd8bf
+  entity Client #d3ffd9
     entity Client.id
     entity Client.login
     entity Client.email
@@ -16,7 +16,7 @@
     Client.password -u-* Client
     Client.roleId -u-* Client
 
-  entity Role #fdd8bf
+  entity Role #d3ffd9
     entity Role.id
     entity Role.name
     entity Role.description
@@ -35,7 +35,7 @@
     User ...> Role : instanceOf
     Admin ...> Role : instanceOf
 
-  entity Request #fdd8bf
+  entity Request #d3ffd9
     entity Request.id
     entity Request.name
     entity Request.description
@@ -46,14 +46,14 @@
     Request.description --* Request
     Request.datetime --* Request
 
-  entity Access #fdd8bf
+  entity Access #d3ffd9
     entity Access.id
     entity Access.permission
 
     Access.id -r-* Access
     Access.permission -l-* Access
 
-  entity Action #fdd8bf
+  entity Action #d3ffd9
     entity Action.id
     entity Action.name
     entity Action.description
@@ -64,7 +64,7 @@
     Action.description -u-* Action
     Action.datetime -u-* Action
 
-  entity MediaData #fdd8bf
+  entity MediaData #d3ffd9
     entity MediaData.id
     entity MediaData.name
     entity MediaData.fileType
