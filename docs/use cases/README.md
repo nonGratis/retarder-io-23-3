@@ -60,12 +60,12 @@ usecase "<b>DataManage</b>" as DataManage
 
 usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.Help
 usecase "<b>User.Login</b>\nАвторизація" as User.Login
-usecase "<b>User.Password_Recovery</b>\nВідновлення паролю\nкористувачем" as User.Password_Recovery
+usecase "<b>User.PasswordRecovery</b>\nВідновлення паролю\nкористувачем" as User.PasswordRecovery
 usecase "<b>User.DeleteRequest</b>\nЗапит на видалення\nоблікового запису" as User.DeleteRequest
-usecase "<b>User.Search_req</b>\nЗапит на пошук" as User.Search_req
-usecase "<b>User.Data_filter</b>\nФільтрація даних" as User.Data_filter
-usecase "<b>User.Loading_Data_In_System</b>\nЗавантаження даних у систему" as User.Loading_Data_In_System
-usecase "<b>User.Loading_Data_From_System</b>\nЗавантаження даних з системи" as User.Loading_Data_From_System
+usecase "<b>User.SearchRequest</b>\nЗапит на пошук" as User.SearchRequest
+usecase "<b>User.DataFilter</b>\nФільтрація даних" as User.DataFilter
+usecase "<b>User.Import</b>\nЗавантаження даних у систему" as User.Import
+usecase "<b>User.Export</b>\nЗавантаження даних з системи" as User.Export
 
 User --> SupportManage
 User --> ProfileManage
@@ -74,12 +74,12 @@ User --> DataManage
 
 SupportManage <-[dashed]- User.Help : <<extend>>
 ProfileManage <-[dashed]- User.Login : <<extend>>
-User.Login <-[dashed]- User.Password_Recovery : <<extend>>
+User.Login <-[dashed]- User.PasswordRecovery : <<extend>>
 ProfileManage <-[dashed]- User.DeleteRequest : <<extend>>
-SearchManage <-[dashed]- User.Search_req : <<extend>>
-User.Search_req <-[dashed]- User.Data_filter : <<extend>>
-DataManage <-[dashed]- User.Loading_Data_In_System : <<extend>>
-DataManage <-[dashed]- User.Loading_Data_From_System : <<extend>>
+SearchManage <-[dashed]- User.SearchRequest : <<extend>>
+User.SearchRequest <-[dashed]- User.DataFilter : <<extend>>
+DataManage <-[dashed]- User.Import : <<extend>>
+DataManage <-[dashed]- User.Export : <<extend>>
 
 @enduml
 
@@ -89,23 +89,23 @@ DataManage <-[dashed]- User.Loading_Data_From_System : <<extend>>
 
 actor "Адміністратор" as Admin
 
-usecase "<b>AccountManage</b>\nКерування обліковими\n записами користувачів" as ManageAccount 
-usecase "<b>SourceManage</b>\nКерування джерелами інформації" as ManageSource 
+usecase "<b>AccountManage</b>\nКерування обліковими\n записами користувачів" as ManageAccount
+usecase "<b>SourceManage</b>\nКерування джерелами інформації" as ManageSource
 
-usecase "<b>Administrator.Add_New_Source</b>\nДодавання нового джерела" as Administrator.Add_New_Source
-usecase "<b>Administrator.Delete_Source</b>\nВидалення джерела" as Administrator.Delete_Source
-usecase "<b>Administrator.Request_History</b>\nІсторія запитів користувачів" as Administrator.Request_History
+usecase "<b>Administrator.AddSource</b>\nДодавання нового джерела" as Administrator.AddSource
+usecase "<b>Administrator.DeleteSource</b>\nВидалення джерела" as Administrator.DeleteSource
+usecase "<b>Administrator.RequestHistory</b>\nІсторія запитів користувачів" as Administrator.RequestHistory
 usecase "<b>Admin.ProfileEdit</b>\nРедагування\nоблікового запису" as Admin.ProfileEdit
 usecase "<b>Admin.ProfileDelete</b>\nВидалення\nоблікового запису" as Admin.ProfileDelete
 
 Admin --> ManageAccount
-Administrator.Request_History .u.> ManageAccount: <<extends>>
+Administrator.RequestHistory .u.> ManageAccount: <<extends>>
 Admin.ProfileEdit .u.> ManageAccount: <<extends>>
 Admin.ProfileDelete .u.> ManageAccount: <<extends>>
 
 Admin --> ManageSource
-Administrator.Add_New_Source .u.> ManageSource: <<extends>>
-Administrator.Delete_Source .u.> ManageSource: <<extends>>
+Administrator.AddSource .u.> ManageSource: <<extends>>
+Administrator.DeleteSource .u.> ManageSource: <<extends>>
 
 @enduml
 
@@ -155,7 +155,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Авторизація
 
-| ***ID***:         | User.Login                                                                     |
+| ***ID***:         | User.Login                                                                        |
 |-------------------|-----------------------------------------------------------------------------------|
 | ***НАЗВА***:      | Авторизація                                                                       |
 | ***УЧАСНИКИ***:   | Користувач, Система                                                               |
@@ -189,7 +189,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Звернення до підтримки
 
-| ***ID***:                | User.Help                                                                               |
+| ***ID***:         | User.Help                                           |
 |--------------------------|-----------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Звернення користувача до підтримки                                                      |
 | ***УЧАСНИКИ***:          | Користувач, система                                                                     |
@@ -222,13 +222,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Відновлення паролю
 
-| ***ID***:                | User.Password_Recovery                                                                               |
+| ***ID***:         | User.PasswordRecovery                          |
 |--------------------------|------------------------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Відновлення паролю користувачем                                                                      |
 | ***УЧАСНИКИ***:          | Користувач, система                                                                                  |
 | ***ПЕРЕДУМОВИ***:        | Користувач має обліковий запис у системі                                                             |
 | ***РЕЗУЛЬТАТ***:         | Оновлений пароль облікового запису користувача                                                       |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Облікового запису не існує InvalidEmailForRecovery <br /> Помилка переходу на сторінку відновлення InvalidRecoveryLink <br /> Некоректний пароль InvalidPassForRecovery |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Облікового запису не існує PasswordRecovery.WrongEmail <br /> Помилка переходу на сторінку відновлення InvalidRecoveryLink <br /> Некоректний пароль InvalidPassForRecovery |
 
 @startuml
 |Користувач|
@@ -237,9 +237,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 |Система|
     :Надає форму запиту для відновлення паролю;
 |Користувач|
-    :Вводить електронну пошту;
-        note left #FF736E
-            InvalidEmailForRecovery
+            PasswordRecovery.WrongEmail
         end note
 |Система|
     :Надсилає на вказану електронну пошту лист зі згенерованим посиланням;
@@ -298,13 +296,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Пошук
 
-| ***ID***:                | User.Search_req                                                                                               |
+| ***ID***:         | User.SearchRequest                                                                                            |
 |--------------------------|---------------------------------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Запит на пошук                                                                                                |
 | ***УЧАСНИКИ***:          | Користувач, система.                                                                                          |
 | ***ПЕРЕДУМОВИ***:        | Користувач авторизований. <br /> Користувач вже знаходиться на домашній сторінці або сторінці пошуку системи. |
 | ***РЕЗУЛЬТАТ***:         | Відображення результатів пошуку користувачеві.                                                                |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Невдала спроба пошуку через помилково введені дані - Search_req.InvalidInput. <br /> Користувач не був авторизований - SingUp.False.                   |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Невдала спроба пошуку через помилково введені дані - SearchRequest.InvalidInput. <br /> Користувач не був авторизований - SingUp.False.                   |
 
 @startuml
 |Користувач|
@@ -316,7 +314,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Відображає результати пошуку;
     :Вносить результати\nв історію пошуку;
         note right #FF736E
-            Search_req.InvalidInput
+            SearchRequest.InvalidInput
         end note
 |Користувач|
     :Переглядає результати пошуку;
@@ -326,13 +324,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Фільтрація
 
-| ***ID***:                | User.Data_filter                                                                     |
+| ***ID***:                | User.DataFilter                                                                      |
 |--------------------------|--------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Фільтрація даних                                                                     |
 | ***УЧАСНИКИ***:          | Користувач, система.                                                                 |
 | ***ПЕРЕДУМОВИ***:        | Користувач вже виконав пошук та отримав результати. <br /> Користувач авторизований. |
 | ***РЕЗУЛЬТАТ***:         | Відображення оновлених результатів пошуку з урахуванням обраних фільтрів.            |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Користувач не обрав жодного фільтру - Data_filter.NoFilters.                 |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Користувач не обрав жодного фільтру - DataFilter.NoFilters.                          |
 
 @startuml
 |Користувач|
@@ -346,7 +344,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 |Система|
     :Відображає оновлені результати з\nврахуванням застосованих фільтрів;
         note right #FF736E
-            Data_filter.NoFilters
+            DataFilter.NoFilters
         end note
     
 |Користувач|
@@ -356,13 +354,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Імпорт даних
 
-| ***ID***:         | User.Loading_Data_In_System                               |
+| ***ID***:         | User.Import                                               |
 |-------------------|-----------------------------------------------------------|
 | ***НАЗВА***:      | Завантаження даних у систему                              |
 | ***УЧАСНИКИ***:   | Користувач, система                                       |
 | ***ПЕРЕДУМОВИ***: | Авторизація користувача, наявність даних для завантаження |
 | ***РЕЗУЛЬТАТ***:  | Дані успішно завантажені у систему                        |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Помилки під час завантаження - wrong_data_format <br /> Втрата з'єднання - wrong_connection <br /> Обмеження прав доступу - Loading_Data_In_System.AccessDenied |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Помилки під час завантаження - wrong_data_format <br /> Втрата з'єднання - wrong_connection <br /> Обмеження прав доступу - Import.AccessDenied |
 
 @startuml
 |Користувач| 
@@ -370,7 +368,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Переходить до розділу\n"Завантаження даних";
     :Натискає кнопку\n"Завантажити дані в систему";
         note left #FF736E
-            Loading_Data_In_System.AccessDenied
+            Import.AccessDenied
         end note
 |Система|
     :Отримує запит на завантаження даних;
@@ -391,13 +389,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Експорт даних
 
-| ***ID***:                | User.Loading_Data_From_System                                                            |
+| ***ID***:                | User.Export                                                            |
 |--------------------------|------------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Завантаження даних з системи                                                             |
 | ***УЧАСНИКИ***:          | Користувач, система                                                                      |
 | ***ПЕРЕДУМОВИ***:        | Авторизація користувача, доступність даних у системі                                     |
 | ***РЕЗУЛЬТАТ***:         | Успішне завантаження даних                                                               |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Відсутність даних у системі - no_data <br /> Помилки під час завантаження - wrong_connection; <br /> Відсутність електронної пошти - no_email <br /> Неправильно введено електронну пошту - wrong_email <br /> Обмеження прав доступу - Loading_Data_From_System.AccessDenied |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Відсутність даних у системі - no_data <br /> Помилки під час завантаження - wrong_connection; <br /> Відсутність електронної пошти - no_email <br /> Неправильно введено електронну пошту - User.Export.WrongEmail <br /> Обмеження прав доступу - Export.AccessDenied |
 
 @startuml
 |Користувач| 
@@ -405,7 +403,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Переходить до розділу\n"Завантаження даних";
     :Натискає кнопку\n"Завантажити дані з системи";
         note left #FF736E
-            Loading_Data_From_System.AccessDenied
+            Export.AccessDenied
         end note
 |Система|
     :Отримує запит на завантаження даних;
@@ -428,7 +426,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
         end note
     :Надсилає дані на пошту користувача;
         note right #FF736E
-            wrong_email
+            User.Export.WrongEmail
         end note
 |Користувач| 
     :Отримує сповіщення про успішне\nнадсилання даних на пошту;
@@ -443,13 +441,13 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Історія запитів користувачів
 
-| ***ID***:                | Administrator.Request_History                                                              |
+| ***ID***:                | Administrator.RequestHistory                                                              |
 |--------------------------|--------------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Історія запитів користувачів                                                               |
 | ***УЧАСНИКИ***:          | Адміністратор, користувачі, система                                                        |
 | ***ПЕРЕДУМОВИ***:        | Авторизація адміністратора, потреба зберігати та відстежувати історію запитів користувачів |
 | ***РЕЗУЛЬТАТ***:         | Збереження та доступ до історії запитів для адміністратора                                 |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Втрата даних wrong_search <br /> Обмежений доступ до історії Request_History.AccessDenied  |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Втрата даних wrong_search <br /> Обмежений доступ до історії RequestHistory.AccessDenied  |
 
 @startuml
 |Адміністратор| 
@@ -458,7 +456,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Натискає кнопку "Обрати користувача";
     :Натискає кнопку "Переглянути історію запитів";
         note left #FF736E
-            Request_History.AccessDenied
+            RequestHistory.AccessDenied
         end note
 |Система|
     :Шукає та формує історію запитів;
@@ -472,20 +470,20 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Додавання джерела
 
-| ***ID***:                | Administrator.Add_New_Source                               |
+| ***ID***:                | Administrator.AddSource                               |
 |--------------------------|------------------------------------------------------------|
 | ***НАЗВА***:             | Додавання нового джерела                                   |
 | ***УЧАСНИКИ***:          | Адміністратор, система                                     |
 | ***ПЕРЕДУМОВИ***:        | Авторизація адміністратора <br />Потреба в  новому джерелі |
 | ***РЕЗУЛЬТАТ***:         | Створення нового джерела                                   |
-| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Помилка аналізу AnalyzeError<br />Брак пам'яті LimitStorage<br />Доступ заблокований Add_New_Source.AccessDenied<br /> Відмова адміністратора від збереження Add_New_Source.NotConfirm<br /> Джерело вже існує DuplicateSource |
+| ***ВИКЛЮЧНІ СИТУАЦІЇ***: | Помилка аналізу AnalyzeError<br />Брак пам'яті LimitStorage<br />Доступ заблокований AddSource.AccessDenied<br /> Відмова адміністратора від збереження AddSource.NotConfirm<br /> Джерело вже існує DuplicateSource |
 
 @startuml
 |Адміністратор|
     start
     :Вибирає опцію додавання\nнового джерела;
         note left #FF736E
-            Add_New_Source.AccessDenied
+            AddSource.AccessDenied
         end note
 |Система|
     :Надає форму для введення\nінформації про джерело;
@@ -493,7 +491,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Вводить інформацію про джерело;
     :Підтверджує додавання джерела;
         note left #FF736E
-            Add_New_Source.NotConfirm
+            AddSource.NotConfirm
         end note
 |Система|
     :Додає нове джерело\nдо системи;
@@ -508,7 +506,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
 
 #### Видалення джерела
 
-| ***ID***:                | Administrator.Delete_Source                                                                          |
+| ***ID***:                | Administrator.DeleteSource                                                                          |
 |--------------------------|------------------------------------------------------------------------------------------------------|
 | ***НАЗВА***:             | Видалення джерела                                                                                    |
 | ***УЧАСНИКИ***:          | Адміністратор, система                                                                               |
@@ -521,7 +519,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     start
     :Обирає опцію "Видалити джерело";
         note left #FF736E
-            Delete_Source.AccessDenied
+            DeleteSource.AccessDenied
         end note
 |Система|
     :Надає список джерел;
@@ -529,7 +527,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Вибирає джерело для видалення;
     :Підтверджує видалення джерела;
         note left #FF736E
-            Delete_Source.NotConfirm
+            DeleteSource.NotConfirm
         end note
 |Система|
     :Видаляє джерело з системи;
@@ -556,7 +554,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Вибирає обліковий запис\nдля редагування;
         note left #FF736E
             ProfileDelete.AccessDenied
-            ProfileDelete.WrongLogin       
+            ProfileDelete.WrongLogin
         end note
 
 |Система|
@@ -565,7 +563,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Змінює інформацію в\nобліковому записі;
     :Натискає кнопку\nпідтвердження редагування;
         note left #FF736E
-            Admin.ProfileDelete.NotConfirm        
+            Admin.ProfileDelete.NotConfirm
         end note
 
 |Система|
@@ -573,7 +571,7 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
         note right #FF736E
             ProfileEdit.WrongLogin
             ProfileEdit.WrongEmail
-            ProfileEdit.WrongPass        
+            ProfileEdit.WrongPass
         end note
 
     :Зберігає змінену інформацію;
@@ -598,20 +596,20 @@ Administrator.Delete_Source .u.> ManageSource: <<extends>>
     :Вибирає обліковий запис\nдля видалення;
         note left #FF736E
             ProfileDelete.AccessDenied
-            ProfileDelete.WrongLogin       
+            ProfileDelete.WrongLogin
         end note
 |Система|
     :Надає форму для\nпідтвердження видалення;
 |Адміністратор|
     :Підтверджує видалення\nоблікового запису;
         note left #FF736E
-            Admin.ProfileDelete.NotConfirm        
+            Admin.ProfileDelete.NotConfirm
         end note
 
 |Система|
     :Перевіряє дані з форми;
         note right #FF736E
-            ProfileDelete.WrongLogin     
+            ProfileDelete.WrongLogin
         end note
 
     :Видаляє обліковий запис;
