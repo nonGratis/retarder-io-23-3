@@ -62,10 +62,12 @@ usecase "<b>User.Help</b>\nЗвернення до\nпідтримки" as User.
 usecase "<b>User.Login</b>\nАвторизація" as User.Login
 usecase "<b>User.PasswordRecovery</b>\nВідновлення паролю\nкористувачем" as User.PasswordRecovery
 usecase "<b>User.DeleteRequest</b>\nЗапит на видалення\nоблікового запису" as User.DeleteRequest
+
 usecase "<b>User.SearchRequest</b>\nЗапит на пошук" as User.SearchRequest
 usecase "<b>User.DataFilter</b>\nФільтрація даних" as User.DataFilter
 usecase "<b>User.Import</b>\nЗавантаження даних у систему" as User.Import
 usecase "<b>User.Export</b>\nЗавантаження даних з системи" as User.Export
+
 
 User --> SupportManage
 User --> ProfileManage
@@ -74,6 +76,7 @@ User --> DataManage
 
 SupportManage <-[dashed]- User.Help : <<extend>>
 ProfileManage <-[dashed]- User.Login : <<extend>>
+
 User.Login <-[dashed]- User.PasswordRecovery : <<extend>>
 ProfileManage <-[dashed]- User.DeleteRequest : <<extend>>
 SearchManage <-[dashed]- User.SearchRequest : <<extend>>

@@ -23,3 +23,6 @@ git commit -m 'deploy'
 git push -f https://github.com/nonGratis/retarder-io-23-3.git master:gh-pages
 
 cd -
+
+# To debug the documentation in local mode, run
+# npm run docs:dev
