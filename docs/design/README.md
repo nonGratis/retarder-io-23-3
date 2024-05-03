@@ -8,61 +8,58 @@
     entity Client.login
     entity Client.email
     entity Client.password
-    entity Client.roleId
 
     Client.id -r-* Client
     Client.login -u-* Client
     Client.email -u-* Client
     Client.password -u-* Client
-    Client.roleId -u-* Client
 
   entity Role #d3ffd9
     entity Role.id
     entity Role.name
     entity Role.description
-    entity Role.permission
 
     Role.id --* Role
     Role.name --* Role
     Role.description --* Role
-    Role.permission --* Role
 
-    entity Guest
-    entity User
-    entity Admin
+  entity Guest
+  entity User
+  entity Admin
 
-    Guest ...> Role : instanceOf
-    User ...> Role : instanceOf
-    Admin ...> Role : instanceOf
+  Guest ...> Role : instanceOf
+  User ...> Role : instanceOf
+  Admin ...> Role : instanceOf
+
+  entity Permissions #d3ffd9
+    entity Permissions.id
+
+    Permissions.id --* Permissions
+
+  entity Permission #d3ffd9
+    entity Permission.id
+    entity Permission.name
+
+    Permission.id --* Permission
+    Permission.name --* Permission
 
   entity Request #d3ffd9
     entity Request.id
-    entity Request.name
     entity Request.description
     entity Request.datetime
   
     Request.id --* Request
-    Request.name --* Request
     Request.description --* Request
     Request.datetime --* Request
-
-  entity Access #d3ffd9
-    entity Access.id
-    entity Access.permission
-
-    Access.id -r-* Access
-    Access.permission -l-* Access
 
   entity Action #d3ffd9
     entity Action.id
     entity Action.name
     entity Action.description
-    entity Action.datetime
 
     Action.id -u-* Action
     Action.name -u-* Action
     Action.description -u-* Action
-    Action.datetime -u-* Action
 
   entity MediaData #d3ffd9
     entity MediaData.id
@@ -75,11 +72,12 @@
     MediaData.fileType -u-* MediaData
     MediaData.metadata -u-* MediaData
 
-  Client "1,1"-r-"0,*" Request
-  Role "1,1"--"0,*" Access
-  Request "0,*"---"1,1" Access
-  Access "1,1"--"0,*" Action
-  Access "1,1"--"0,*" MediaData
+  Permission "1,1"--"0,*" Permissions
+  Permissions "0,*"--"1,1" Role
+  Role "1,1"--"0,*" Client
+  Client "1,1"--"0,*" Request
+  Request "1,1"--"0,*" Action
+  Request "1,1"--"0,*" MediaData
 
 @enduml
 
@@ -88,20 +86,19 @@
 @startuml
   package ClientManage {
       entity Client <<ENTITY>> {
-        id: INT
-        login: TEXT
-        email: TEXT
-        password: TEXT
-        roleId: INT
+        id: BINARY(16)
+        login: VARCHAR(32)
+        email: VARCHAR(255)
+        password: VARCHAR(40)
+        role_id: INT
       }
   }
 
   package AccessControl {
       entity Role <<ENTITY>> {
         id: INT
-        name: TEXT
+        name: VARCHAR(32)
         description: TEXT
-        permission: TEXT
       }
 
       object Guest #white
@@ -112,25 +109,32 @@
       User ..> Role : instanceOf
       Admin ..> Role : instanceOf
 
-      entity Request <<ENTITY>> {
+      entity Permissions <<ENTITY>> {
         id: INT
-        name: TEXT
-        description: TEXT
-        datetime: DATETIME
+        role_id: INT
+        permission_id: INT
       }
 
-      entity Access <<ENTITY>> {
+      entity Permission <<ENTITY>> {
         id: INT
-        permission: TEXT
+        name: VARCHAR(32)
       }
   }
 
   package MediaManagement {
+      entity Request <<ENTITY>> {
+        id: INT
+        description: TEXT
+        datetime: DATETIME
+        action_id: INT
+        mediadata_id: INT
+        client_id: INT
+      }
+
       entity Action <<ENTITY>> {
         id: INT
         name: TEXT
         description: TEXT
-        datetime: DATETIME
       }
 
       object SupportManage #white
@@ -156,11 +160,12 @@
       }
   }
 
+  Permission "1,1"--"0,*" Permissions
+  Permissions "0,*"--"1,1" Role
+  Role "1,1"--"0,*" Client
   Client "1,1"--"0,*" Request
-  Role "1,1"---"0,*" Access
-  Request "0,*"---"1,1" Access
-  Access "1,1"---"0,*" Action
-  Access "1,1"---"0,*" MediaData
+  Request "1,1"--"0,*" Action
+  Request "1,1"--"0,*" MediaData
 
 @enduml
 
