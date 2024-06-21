@@ -3,8 +3,8 @@
   "version": "2.1.0",
   "main": "index.js",
   "description": "Lab work on databases",
-  "repository": "https://github.com/nonGratis/retarder-io-23-3.git",
-  "author": "Andrii Shapovalov <shapovalov.andrii@lll.kpi.ua>",
+  "repository": "https://github.com/kostiamr/retarder-io-23-3.git",
+  "author": "Kostiantyn Martsyniuk <kmartsinuk@gmail.com>",
   "license": "ECL 2.0",
   "scripts": {
     "test":"jest",
